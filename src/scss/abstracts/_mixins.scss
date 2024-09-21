@@ -1,0 +1,257 @@
+@use './variables' as *;
+
+@mixin FontSize($size, $weight) {
+	font-size: $size * $px;
+	font-variation-settings: 'wght' $weight;
+	font-weight: $weight;
+}
+
+@mixin Tablet() {
+	@media screen and (max-width: $tablet) {
+		@content;
+	}
+}
+
+@mixin Mobile() {
+	@media screen and (max-width: $mobile) {
+		@content;
+	}
+}
+
+@mixin MobileOnly() {
+	@media screen and (max-width: $mobileOnly) {
+		@content;
+	}
+}
+
+@mixin dynamicSize($property, $size, $tabletSize: $size, $mobileSize: $tabletSize, $mobileOnlySize: $mobileSize) {
+	#{$property}: $size;
+
+	@include Tablet() {
+		#{$property}: $tabletSize;
+	}
+
+	@include Mobile() {
+		#{$property}: $mobileSize;
+	}
+
+	@include MobileOnly() {
+		#{$property}: $mobileOnlySize;
+	}
+}
+
+@mixin dynamicFontSize($size, $tabletSize: $size, $mobileSize: $tabletSize, $mobileOnlySize: $mobileSize, $weight) {
+	@include FontSize($size, $weight);
+
+	@include Tablet() {
+		@include FontSize($tabletSize, $weight);
+	}
+
+	@include Mobile() {
+		@include FontSize($mobileSize, $weight);
+	}
+
+	@include MobileOnly() {
+		@include FontSize($mobileOnlySize, $weight);
+	}
+}
+
+@mixin flexBasic($direction: row, $wrap: nowrap, $justify: flex-start, $alignItems: stretch, $alignContent: stretch) {
+	display: flex;
+	flex-direction: $direction;
+	flex-wrap: $wrap;
+	justify-content: $justify;
+	align-items: $alignItems;
+	align-content: $alignContent;
+}
+
+@mixin flex($axis: null, $param1: null, $param2: null, $param3: null, $param4: null) {
+	$direction: if(
+		$axis == x,
+		row,
+		if($axis == y, column, if($axis == -x, row-reverse, if($axis == -y, column-reverse, row)))
+	);
+
+	$wrapValue: null;
+	$justifyValue: null;
+	$alignValue: null;
+	$alignContentValue: null;
+
+	@each $param in $param1, $param2, $param3, $param4 {
+		@if $param {
+			@if $param == wrap-reverse {
+				$wrapValue: wrap-reverse;
+			} @else if $param == wrap {
+				$wrapValue: wrap;
+			} @else if index(left right xCenter xAround xEvenly xBetween, $param) {
+				$alignment: if(index(row row-reverse, $direction), $justifyValue, $alignValue);
+				$alignment: if(
+					$param == left,
+					flex-start,
+					if(
+						$param == right,
+						flex-end,
+						if(
+							$param == xCenter,
+							center,
+							if($param == xAround, space-around, if($param == xEvenly, space-evenly, space-between))
+						)
+					)
+				);
+				@if index(row row-reverse, $direction) {
+					$justifyValue: $alignment;
+				} @else {
+					$alignValue: $alignment;
+				}
+			} @else if index(top bottom yCenter yAround yEvenly yBetween, $param) {
+				$alignment: if(index(row row-reverse, $direction), $alignValue, $justifyValue);
+				$alignment: if(
+					$param == top,
+					flex-start,
+					if(
+						$param == bottom,
+						flex-end,
+						if(
+							$param == yCenter,
+							center,
+							if($param == yAround, space-around, if($param == yEvenly, space-evenly, space-between))
+						)
+					)
+				);
+				@if index(row row-reverse, $direction) {
+					$alignValue: $alignment;
+				} @else {
+					$justifyValue: $alignment;
+				}
+			} @else if
+				index(
+					xContentStretch
+						xContentCenter
+						xContentStart
+						xContentEnd
+						xContentAround
+						xContentEvenly
+						xContentBetween
+						yContentStretch
+						yContentCenter
+						yContentStart
+						yContentEnd
+						yContentAround
+						yContentEvenly
+						yContentBetween,
+					$param
+				)
+			{
+				$alignmentContent: if(index(row row-reverse, $direction), $alignContentValue, $alignContentValue);
+				$alignmentContent: if(
+					index(
+						yContentStretch yContentCenter yContentStart yContentEnd yContentAround yContentEvenly yContentBetween,
+						$param
+					),
+					if(
+						$param == yContentStretch,
+						stretch,
+						if(
+							$param == yContentCenter,
+							center,
+							if(
+								$param == yContentStart,
+								flex-start,
+								if(
+									$param == yContentEnd,
+									flex-end,
+									if($param == yContentAround, space-around, if($param == yContentEvenly, space-evenly, space-between))
+								)
+							)
+						)
+					),
+					if(
+						$param == xContentStretch,
+						stretch,
+						if(
+							$param == xContentCenter,
+							center,
+							if(
+								$param == xContentStart,
+								flex-start,
+								if(
+									$param == xContentEnd,
+									flex-end,
+									if($param == xContentAround, space-around, if($param == xContentEvenly, space-evenly, space-between))
+								)
+							)
+						)
+					)
+				);
+				$alignContentValue: $alignmentContent;
+			}
+		}
+	}
+
+	display: flex;
+	flex-direction: $direction;
+
+	@if $wrapValue {
+		flex-wrap: $wrapValue;
+	}
+	@if $justifyValue {
+		justify-content: $justifyValue;
+	}
+	@if $alignValue {
+		align-items: $alignValue;
+	}
+	@if $alignContentValue {
+		align-content: $alignContentValue;
+	}
+}
+
+@mixin typography($size, $weight, $line-height: null, $letter-spacing: null) {
+	font-size: $size;
+	font-weight: $weight;
+	line-height: if($line-height, $line-height, normal);
+	letter-spacing: if($letter-spacing, $letter-spacing, normal);
+}
+
+@mixin font-30-bold {
+	@include typography($font-size-30, $font-weight-bold, null, $letter-spacing-negative);
+}
+
+@mixin font-24-bold {
+	@include typography($font-size-24, $font-weight-bold, null, $letter-spacing-negative);
+}
+
+@mixin font-20-regular {
+	@include typography($font-size-20, $font-weight-regular, $line-height-28, $letter-spacing-negative);
+}
+
+@mixin font-18-bold {
+	@include typography($font-size-18, $font-weight-bold, null, $letter-spacing-negative);
+}
+
+@mixin font-18-regular {
+	@include typography($font-size-18, $font-weight-regular, $line-height-24, $letter-spacing-negative);
+}
+
+@mixin font-16-bold {
+	@include typography($font-size-16, $font-weight-bold, null, $letter-spacing-negative);
+}
+
+@mixin font-16-medium {
+	@include typography($font-size-16, $font-weight-medium, null, $letter-spacing-negative);
+}
+
+@mixin font-16-regular {
+	@include typography($font-size-16, $font-weight-regular, null, $letter-spacing-negative);
+}
+
+@mixin font-14-bold {
+	@include typography($font-size-14, $font-weight-bold, null, $letter-spacing-negative);
+}
+
+@mixin font-14-regular {
+	@include typography($font-size-14, $font-weight-regular, null, $letter-spacing-negative);
+}
+
+@mixin font-12-regular {
+	@include typography($font-size-12, $font-weight-regular, null, $letter-spacing-negative);
+}
