@@ -1,9 +1,9 @@
-import styles from './page.module.scss'
+import Test from './test'
 
 export default function Home() {
 	return (
-		<div className={styles.main}>
-			<span className={styles.test}>test</span>
-		</div>
+		<>
+			<Test />
+		</>
 	)
 }
