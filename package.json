@@ -7,7 +7,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"lintcf": "eslint --cache --fix \"**/*.{ts,tsx}\"",
+		"lintcf": "eslint --no-cache --fix \"**/*.{ts,tsx}\"",
 		"prepare": "husky install"
 	},
 	"dependencies": {
