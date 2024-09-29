@@ -22,7 +22,7 @@ const FilterBar = () => {
 	return (
 		<div className={styles.filterBar}>
 			<div className={styles.tabs}>
-				<Link href='/public'>
+				<Link href='/'>
 					<Tab isPublic selected={selected === 'public'} onClick={() => handleClick('public')} />
 				</Link>
 				<Link href='/private'>
