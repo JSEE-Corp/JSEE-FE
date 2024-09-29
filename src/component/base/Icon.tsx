@@ -4,7 +4,7 @@ import { clc } from '../../utils/classComposer'
 
 import styles from './icon.module.scss'
 
-const defaultAssetList = ['search', 'bubble', 'x', 'edit', 'delete', 'empty', 'calender'] as const
+const defaultAssetList = ['search', 'bubble', 'x', 'edit', 'delete', 'empty', 'calender', 'arrowDown'] as const
 const coloredAssetList = ['flower'] as const
 
 type DefaultAssetName = (typeof defaultAssetList)[number]
