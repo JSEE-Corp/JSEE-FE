@@ -1,0 +1,36 @@
+.private {
+	@include flex(y, xCenter, top);
+
+	width: 100%;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	padding-bottom: 20px;
+}
+
+.content {
+	width: 100%;
+
+	padding: 20px;
+
+	background: rgba($white, 0.08);
+	border-radius: 20px;
+	box-shadow: 0 4px 30px rgba($black, 0.08);
+
+	@include MobileOnly {
+		padding: 10px;
+	}
+}
+
+.cardContainer {
+	width: 100%;
+	height: fit-content;
+
+	@include flex(-x, wrap, xCenter, top);
+
+	overflow-y: scroll;
+
+	gap: 20px;
+}

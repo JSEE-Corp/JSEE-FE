@@ -1,0 +1,187 @@
+.space {
+	width: 260px;
+	height: auto;
+	aspect-ratio: 3/5;
+
+	@include flex(y, xCenter, top);
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	@include Mobile {
+		width: 180px;
+	}
+
+	@include MobileOnly {
+		width: 140px;
+	}
+
+	background-color: white;
+	border: 1px solid $gray-200;
+
+	padding: 20px;
+
+	border-radius: 12px;
+
+	gap: 20px;
+
+	&.private {
+		aspect-ratio: 2/1;
+	}
+}
+
+.card {
+	width: 100%;
+	height: 100%;
+
+	@include flex(y, xCenter, top);
+
+	flex-grow: 1;
+	flex-shrink: 0;
+
+	@include Mobile {
+		width: 200px;
+	}
+
+	gap: 20px;
+
+	.imgArea {
+		position: relative;
+
+		width: 100%;
+		height: auto;
+		aspect-ratio: 1;
+
+		.img {
+			width: 100%;
+			height: 100%;
+
+			border-radius: 12px;
+		}
+	}
+
+	.textArea {
+		width: 100%;
+		@include flex(y, left, yCenter);
+
+		.topInfo {
+			width: fit-content;
+			margin-bottom: 20px;
+			gap: 10px;
+
+			@include flex(x, left, yCenter);
+			@include font-14-regular;
+			color: $gray-500;
+
+			@include Mobile {
+				gap: 5px;
+				margin-bottom: 10px;
+			}
+
+			.author {
+				@include font-14-regular;
+				color: $black;
+			}
+
+			.isPublic {
+				@include font-14-regular;
+				color: $gray-500;
+			}
+		}
+
+		.middleInfo {
+			width: 100%;
+			margin-bottom: 25px;
+			@include flex(y, left, yCenter);
+
+			@include Mobile {
+				margin-bottom: 10px;
+			}
+
+			.title {
+				@include font-16-bold;
+				color: $black;
+
+				width: 100%;
+
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.tags {
+				@include font-14-regular;
+				color: $gray-400;
+
+				gap: 5px;
+
+				width: 100%;
+			}
+		}
+
+		.bottomInfo {
+			width: 100%;
+			@include flex(x, xBetween, yCenter);
+
+			.infoWrap1 {
+				width: fit-content;
+				@include flex(x, left, yCenter);
+				gap: 5px;
+
+				margin-right: 10px;
+			}
+
+			.infoWrap2 {
+				width: fit-content;
+				@include flex(x, left, yCenter);
+				gap: 10px;
+
+				@include Mobile {
+					gap: 5px;
+				}
+			}
+
+			.place {
+				@include font-12-regular;
+
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.date {
+				@include font-12-regular;
+			}
+
+			.likes {
+				@include flex(x, xCenter, yCenter);
+
+				gap: 5px;
+
+				@include font-14-regular;
+
+				color: $gray-500;
+			}
+
+			.comments {
+				@include flex(x, xCenter, yCenter);
+
+				gap: 5px;
+
+				@include font-14-regular;
+
+				color: $gray-500;
+			}
+		}
+	}
+}
+
+.icon20 {
+	width: 20px;
+	height: 20px;
+}
+
+.icon24 {
+	width: 24px;
+	height: 24px;
+}

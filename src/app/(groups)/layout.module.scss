@@ -1,0 +1,17 @@
+.layout {
+	@include flex(y, xCenter);
+
+	width: 100vw;
+
+	background-color: $gray-50;
+	color: $black;
+}
+
+.max1200 {
+	@include flex(y, xCenter);
+
+	width: 100%;
+	max-width: 1200px;
+
+	padding-inline: 20px;
+}
