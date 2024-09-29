@@ -1,0 +1,18 @@
+// TODO : light, dark theme 추후 추가
+
+.button {
+	@include flex(x, xCenter, yCenter);
+
+	background-color: $black;
+
+	color: $gray-50;
+
+	border-radius: 6px;
+
+	transition: all 0.25s;
+
+	&:hover,
+	&:focus {
+		background-color: $black-09;
+	}
+}

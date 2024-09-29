@@ -1,0 +1,21 @@
+.tab {
+	@include flex(x, xCenter, yCenter);
+
+	border-radius: 22.5px;
+
+	transition: all 0.25s;
+
+	background-color: $gray-50;
+
+	color: $black;
+
+	@include font-14-bold;
+
+	padding: 13px 20px;
+
+	&.selected {
+		background-color: $black;
+
+		color: $gray-50;
+	}
+}
