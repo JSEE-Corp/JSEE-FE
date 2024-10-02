@@ -1,0 +1,13 @@
+.publicView {
+	@include flex(y, xCenter, top);
+
+	width: 100%;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
+
+	gap: 60px;
+
+	padding-bottom: 120px;
+}
