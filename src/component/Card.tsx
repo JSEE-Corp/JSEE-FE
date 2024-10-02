@@ -45,7 +45,7 @@ type CardProps = BaseCardProps & PublicCardProps & GroupCardProps & MemoryCardPr
 const Card = ({ isPublic, isPrivate, forGroup, forMemory, title, ...props }: CardProps) => {
 	return (
 		<Link
-			href={`/public/1`}
+			href={isPrivate ? `/private/1` : `/public/1`}
 			className={clc(
 				styles.space,
 				isPrivate && forGroup ? styles.privateGroup : isPrivate && forMemory ? styles.privateMemory : ''
