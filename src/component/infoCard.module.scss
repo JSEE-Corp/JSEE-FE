@@ -1,0 +1,258 @@
+.infoCard {
+	width: 100%;
+	min-width: 800px;
+
+	height: fit-content;
+
+	@include flex(x, left, yCenter);
+
+	gap: 60px;
+
+	.imgArea {
+		position: relative;
+
+		min-width: 260px;
+		height: auto;
+
+		aspect-ratio: 1.05;
+
+		.img {
+			width: 100%;
+			height: 100%;
+
+			border-radius: 6px;
+		}
+	}
+
+	.forMemory {
+		width: 100%;
+	}
+
+	.forGroup {
+		width: calc(100% - 320px);
+	}
+
+	.textArea {
+		min-width: 500px;
+		height: 100%;
+
+		@include flex(y, left, yBetween);
+
+		.topInfo {
+			width: 100%;
+
+			@include flex(x, xBetween, yCenter);
+
+			margin-bottom: 20px;
+
+			.leftWrapper {
+				@include flex(x, left, yCenter);
+
+				gap: 10px;
+				color: $gray-500;
+
+				.dday {
+					@include font-16-regular;
+					color: $black;
+				}
+
+				.isPublic {
+					@include font-16-regular;
+					color: $gray-500;
+				}
+			}
+
+			.rightWrapper {
+				@include flex(x, right, yCenter);
+
+				gap: 30px;
+
+				.edit {
+					@include font-14-regular;
+					color: $black;
+				}
+
+				.delete {
+					@include font-14-regular;
+					color: $gray-500;
+				}
+			}
+		}
+
+		.middleInfo {
+			width: 100%;
+
+			@include flex(y, left, yCenter);
+
+			gap: 20px;
+
+			margin-bottom: 30px;
+
+			.titleWrapper {
+				@include flex(x, left, yCenter);
+
+				gap: 40px;
+
+				.title {
+					@include font-30-bold;
+					color: $black;
+
+					max-height: 70px;
+					overflow: hidden;
+				}
+
+				.subInfo {
+					@include flex(x, xBetween, yCenter);
+
+					gap: 20px;
+
+					color: $gray-500;
+
+					.memories {
+						@include font-18-bold;
+						color: $black;
+					}
+
+					.groupLikes {
+						@include font-18-bold;
+						color: $black;
+					}
+				}
+			}
+
+			.tags {
+				@include flex(x, left, yCenter);
+
+				gap: 10px;
+
+				.tag {
+					@include font-14-regular;
+					color: $gray-400;
+
+					gap: 5px;
+
+					width: 100%;
+				}
+			}
+
+			.desc {
+				@include font-18-regular;
+				color: $black;
+
+				max-height: 50px;
+
+				overflow: hidden;
+			}
+		}
+
+		.forMemory {
+			@include flex(x, left, yCenter);
+
+			gap: 35px;
+		}
+
+		.forGroup {
+			@include flex(y, xBetween, yCenter);
+
+			gap: 20px;
+		}
+
+		.bottomInfo {
+			position: relative;
+			width: 100%;
+
+			.badgeTitle {
+				@include font-16-bold;
+				color: $black;
+			}
+
+			.badgesWrapper {
+				width: 100%;
+
+				position: relative;
+
+				@include flex(x, left, yCenter);
+
+				gap: 10px;
+			}
+
+			.badges {
+				position: relative;
+
+				@include flex(x, left, yCenter);
+
+				width: 72%;
+
+				max-width: 800px;
+
+				overflow-x: scroll;
+
+				gap: 10px;
+
+				.badge {
+					@include font-14-regular;
+					color: $black;
+
+					padding: 10px;
+				}
+			}
+
+			.infoWrap1 {
+				@include flex(x, left, yCenter);
+				@include font-16-bold;
+				gap: 10px;
+
+				.place {
+					@include font-16-bold;
+					color: $black;
+				}
+
+				.date {
+					@include font-16-bold;
+					color: $black;
+				}
+			}
+
+			.infoWrap2 {
+				@include flex(x, left, yCenter);
+
+				gap: 20px;
+
+				.likes {
+					@include flex(x, left, yCenter);
+					@include font-14-regular;
+					color: $gray-500;
+				}
+
+				.comment {
+					@include flex(x, left, yCenter);
+					@include font-14-regular;
+					color: $gray-500;
+				}
+			}
+		}
+
+		.sendLike {
+			position: absolute;
+			right: 0;
+
+			@include font-16-medium;
+			color: $black;
+
+			min-width: 180px;
+			height: 52px;
+
+			gap: 10px;
+		}
+	}
+}
+
+.icon20 {
+	width: 20px;
+	height: 20px;
+}
+
+.icon24 {
+	width: 24px;
+	height: 24px;
+}

@@ -1,0 +1,15 @@
+.createGroupButton {
+	width: 100%;
+
+	@include flex(x, right, yCenter);
+
+	margin-top: -20px;
+	margin-bottom: 20px;
+}
+
+.create {
+	@include font-14-bold;
+
+	min-width: 200px;
+	height: 40px;
+}
