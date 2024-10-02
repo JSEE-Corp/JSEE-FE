@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 import { clc } from '@/utils/classComposer'
 
@@ -7,45 +8,44 @@ import Icon from './base/Icon'
 
 import styles from './card.module.scss'
 
-interface CardProps {
+// 기본 속성
+interface BaseCardProps {
+	title: string
 	isPublic?: boolean
 	isPrivate?: boolean
 	forGroup?: boolean
 	forMemory?: boolean
-	author?: string
-	dday?: string
-	title: string
-	desc?: string
-	tags?: string
+}
+
+// 공개 카드 속성
+interface PublicCardProps {
 	place?: string
 	date?: string
-	likes?: number
-	comments?: number
+}
+
+// 그룹 카드 속성
+interface GroupCardProps {
+	dday?: string
+	desc?: string
 	badges?: number
 	memories?: number
 	groupLikes?: number
 }
 
-const Card = ({
-	isPublic = false,
-	isPrivate = false,
-	forGroup = false,
-	forMemory = false,
-	author,
-	dday,
-	title,
-	desc,
-	tags,
-	place,
-	date,
-	likes,
-	comments,
-	badges,
-	memories,
-	groupLikes,
-}: CardProps) => {
+// 메모리 카드 속성
+interface MemoryCardProps {
+	author?: string
+	tags?: string
+	likes?: number
+	comments?: number
+}
+
+type CardProps = BaseCardProps & PublicCardProps & GroupCardProps & MemoryCardProps
+
+const Card = ({ isPublic, isPrivate, forGroup, forMemory, title, ...props }: CardProps) => {
 	return (
-		<div
+		<Link
+			href={`/public/1`}
 			className={clc(
 				styles.space,
 				isPrivate && forGroup ? styles.privateGroup : isPrivate && forMemory ? styles.privateMemory : ''
@@ -60,11 +60,11 @@ const Card = ({
 					<div className={styles.topInfo}>
 						{forGroup ? (
 							<>
-								<div className={styles.dday}>{dday}</div> |
+								<div className={styles.dday}>{props.dday}</div> |
 							</>
 						) : (
 							<>
-								<div className={styles.author}>{author}</div> |
+								<div className={styles.author}>{props.author}</div> |
 							</>
 						)}
 						<div className={styles.isPublic}>{isPublic ? '공개' : '비공개'} </div>
@@ -73,7 +73,11 @@ const Card = ({
 					<div className={styles.middleInfo}>
 						<div className={styles.title}>{title}</div>
 						{isPublic &&
-							(forGroup ? <div className={styles.desc}>{desc}</div> : <div className={styles.tags}>{tags}</div>)}
+							(forGroup ? (
+								<div className={styles.desc}>{props.desc}</div>
+							) : (
+								<div className={styles.tags}>{props.tags}</div>
+							))}
 					</div>
 
 					{forGroup ? (
@@ -81,18 +85,18 @@ const Card = ({
 							{isPublic && (
 								<div className={styles.badge}>
 									<span>획득 배지</span>
-									<span>{badges}</span>
+									<span>{props.badges}</span>
 								</div>
 							)}
 							<div className={styles.memory}>
 								<span>추억</span>
-								<span>{memories}</span>
+								<span>{props.memories}</span>
 							</div>
 							<div className={styles.groupLikes}>
 								<span>그룹 공감</span>
 								<div className={styles.iconWrap}>
 									<Icon path='flower' className={styles.icon20} alt='flower' />
-									<span>{groupLikes}</span>
+									<span>{props.groupLikes}</span>
 								</div>
 							</div>
 						</div>
@@ -100,24 +104,24 @@ const Card = ({
 						<div className={styles.bottomInfo}>
 							{isPublic && (
 								<div className={styles.infoWrap1}>
-									<div className={styles.place}>{place}</div>· <div className={styles.date}>{date}</div>
+									<div className={styles.place}>{props.place}</div>· <div className={styles.date}>{props.date}</div>
 								</div>
 							)}
 							<div className={styles.infoWrap2}>
 								<div className={styles.likes}>
 									<Icon path='flower' className={styles.icon20} alt='flower' />
-									{likes}
+									{props.likes}
 								</div>
 								<div className={styles.comments}>
 									<Icon path='bubble' className={styles.icon24} alt='bubble' />
-									{comments}
+									{props.comments}
 								</div>
 							</div>
 						</div>
 					)}
 				</div>
 			</div>
-		</div>
+		</Link>
 	)
 }
 
