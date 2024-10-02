@@ -6,13 +6,3 @@
 	width: 100%;
 	height: 100px;
 }
-
-.create {
-	position: absolute;
-	right: 0;
-
-	@include font-14-bold;
-
-	min-width: 200px;
-	height: 45px;
-}

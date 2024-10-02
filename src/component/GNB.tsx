@@ -106,7 +106,6 @@ const GNB = () => {
 					</defs>
 				</svg>
 			</Link>
-			<Button className={styles.create}>그룹 만들기</Button>
 		</nav>
 	)
 }

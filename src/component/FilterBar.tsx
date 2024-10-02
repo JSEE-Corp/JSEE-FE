@@ -8,10 +8,13 @@ import SearchBar from './SearchBar'
 
 import styles from './filterBar.module.scss'
 
-const FilterBar = () => {
-	const [selected, setSelected] = useState<string>('public')
+interface FilterBarProps {
+	initialSelected: 'public' | 'private'
+}
+const FilterBar = ({ initialSelected = 'public' }: FilterBarProps) => {
+	const [selected, setSelected] = useState<'public' | 'private'>(initialSelected)
 
-	const handleClick = (tab: string) => {
+	const handleClick = (tab: 'public' | 'private') => {
 		setSelected(tab)
 	}
 
