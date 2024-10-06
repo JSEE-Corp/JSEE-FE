@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-export const groupAddSchema = z.object({
+export const addGroupSchema = z.object({
 	name: z.string().min(1),
 	image: z.string().min(1),
 	description: z.string().min(1),
@@ -8,4 +8,4 @@ export const groupAddSchema = z.object({
 	password: z.string().min(1),
 })
 
-export type GroupAddSchema = z.infer<typeof groupAddSchema>
+export type AddGroupSchema = z.infer<typeof addGroupSchema>

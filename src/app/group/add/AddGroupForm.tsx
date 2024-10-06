@@ -8,7 +8,7 @@ import Button from '@/component/base/Button'
 import FormInputGroup from '@/component/form/FormInputGroup'
 import TitleText from '@/component/TitleText'
 
-import { GroupAddSchema, groupAddSchema } from './groupAddZod'
+import { AddGroupSchema, addGroupSchema } from './addGroupZod'
 
 import styles from './AddGroupForm.module.scss'
 
@@ -20,13 +20,13 @@ const AddGroupForm = () => {
 		watch,
 		formState: { isValid, errors },
 		reset,
-	} = useForm<GroupAddSchema>({
-		resolver: zodResolver(groupAddSchema),
+	} = useForm<AddGroupSchema>({
+		resolver: zodResolver(addGroupSchema),
 		shouldUnregister: true,
 		mode: 'onChange',
 	})
 
-	const onSubmit = (data: GroupAddSchema) => {
+	const onSubmit = (data: AddGroupSchema) => {
 		console.log(data)
 	}
 
