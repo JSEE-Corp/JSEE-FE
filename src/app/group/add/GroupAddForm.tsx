@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 import Button from '@/component/base/Button'
 import FormInputGroup from '@/component/form/FormInputGroup'
+import TitleText from '@/component/TitleText'
 
 import { GroupAddSchema, groupAddSchema } from './groupAddZod'
 
@@ -31,7 +32,8 @@ const GroupAddForm = () => {
 
 	return (
 		<form className={styles.groupAddForm} onSubmit={handleSubmit(onSubmit)}>
-			<h1 className={styles.title}>그룹 만들기</h1>
+			<TitleText title='그룹 만들기' />
+
 			<FormInputGroup label='그룹명'>
 				<Controller
 					name='name'
