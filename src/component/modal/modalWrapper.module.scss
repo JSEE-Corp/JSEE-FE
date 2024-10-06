@@ -1,0 +1,8 @@
+.modalWrapper {
+	@include flex(y, xCenter, yCenter);
+
+	padding: 16px;
+
+	background-color: $black;
+	border-radius: 16px;
+}
