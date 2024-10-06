@@ -35,7 +35,7 @@ interface GroupCardProps {
 // 메모리 카드 속성
 interface MemoryCardProps {
 	author?: string
-	tags?: string
+	tags?: string[]
 	likes?: number
 	comments?: number
 }
@@ -76,7 +76,13 @@ const Card = ({ isPublic, isPrivate, forGroup, forMemory, title, ...props }: Car
 							(forGroup ? (
 								<div className={styles.desc}>{props.desc}</div>
 							) : (
-								<div className={styles.tags}>{props.tags}</div>
+								<div className={styles.tags}>
+									{props.tags?.map((tag, index) => (
+										<span key={index} className={styles.tag}>
+											#{tag}
+										</span>
+									))}
+								</div>
 							))}
 					</div>
 
