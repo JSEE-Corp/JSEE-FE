@@ -1,6 +1,5 @@
 import React from 'react'
 
-import FilterBar from '@/component/FilterBar'
 import GNB from '@/component/GNB'
 
 import styles from './layout.module.scss'

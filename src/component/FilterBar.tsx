@@ -10,8 +10,11 @@ import styles from './filterBar.module.scss'
 
 interface FilterBarProps {
 	initialSelected: 'public' | 'private'
+	forLink?: boolean
+	forContents?: boolean
 }
-const FilterBar = ({ initialSelected = 'public' }: FilterBarProps) => {
+
+const FilterBar = ({ initialSelected = 'public', forLink = false, forContents = false }: FilterBarProps) => {
 	const [selected, setSelected] = useState<'public' | 'private'>(initialSelected)
 
 	const handleClick = (tab: 'public' | 'private') => {
@@ -25,12 +28,21 @@ const FilterBar = ({ initialSelected = 'public' }: FilterBarProps) => {
 	return (
 		<div className={styles.filterBar}>
 			<div className={styles.tabs}>
-				<Link href='/'>
-					<Tab isPublic selected={selected === 'public'} onClick={() => handleClick('public')} />
-				</Link>
-				<Link href='/private'>
-					<Tab isPrivate selected={selected === 'private'} onClick={() => handleClick('private')} />
-				</Link>
+				{forLink ? (
+					<>
+						<Link href='/'>
+							<Tab isPublic selected={selected === 'public'} onClick={() => handleClick('public')} />
+						</Link>
+						<Link href='/private'>
+							<Tab isPrivate selected={selected === 'private'} onClick={() => handleClick('private')} />
+						</Link>
+					</>
+				) : (
+					<>
+						<Tab isPublic selected={selected === 'public'} onClick={() => handleClick('public')} />
+						<Tab isPrivate selected={selected === 'private'} onClick={() => handleClick('private')} />
+					</>
+				)}
 			</div>
 			<div className={styles.searchBar}>
 				<SearchBar onSearch={handleSearch} />

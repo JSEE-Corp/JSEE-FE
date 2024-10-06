@@ -1,13 +1,8 @@
 import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
 
-import Button from '@/component/base/Button'
-import FillImg from '@/component/base/FillImg'
 import Card from '@/component/Card'
-import CreateGroupButton from '@/component/CreateGroupButton'
+import CreateButton from '@/component/CreateButton'
 import FilterBar from '@/component/FilterBar'
-import Item from '@/component/item'
 import More from '@/component/More'
 
 import styles from './page.module.scss'
@@ -15,9 +10,8 @@ import styles from './page.module.scss'
 const page = () => {
 	return (
 		<>
-			<FilterBar initialSelected='public' />
-
-			<CreateGroupButton />
+			<FilterBar initialSelected='public' forLink />
+			<CreateButton link='/group/add' text='그룹 만들기' />
 
 			<section className={styles.public}>
 				<div className={styles.cardContainer}>
@@ -42,7 +36,7 @@ const page = () => {
 							forMemory
 							author='김코딩'
 							title='첫 번째 해커톤 참가'
-							tags='해커톤,개발,팀워크'
+							tags={['해커톤', '개발', '팀워크']}
 							place='서울 스타트업 허브'
 							date='2024.03.15'
 							likes={42}

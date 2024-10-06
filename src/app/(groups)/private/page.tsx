@@ -1,9 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
 
-import Button from '@/component/base/Button'
 import Card from '@/component/Card'
-import CreateGroupButton from '@/component/CreateGroupButton'
+import CreateButton from '@/component/CreateButton'
 import FilterBar from '@/component/FilterBar'
 import More from '@/component/More'
 
@@ -12,8 +10,8 @@ import styles from './page.module.scss'
 const page = () => {
 	return (
 		<>
-			<FilterBar initialSelected='private' />
-			<CreateGroupButton />
+			<FilterBar initialSelected='private' forLink />
+			<CreateButton link='/group/add' text='그룹 만들기' />
 
 			<section className={styles.private}>
 				<div className={styles.cardContainer}>
@@ -38,7 +36,7 @@ const page = () => {
 							forMemory
 							author='이개발'
 							title='개인 프로젝트 아이디어'
-							tags='아이디어,기획,개발'
+							tags={['아이디어', '기획', '개발']}
 							likes={10}
 							comments={5}
 						/>
