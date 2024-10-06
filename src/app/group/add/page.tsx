@@ -1,13 +1,13 @@
 import React from 'react'
 
-import GroupAddForm from './GroupAddForm'
+import AddGroupForm from './AddGroupForm'
 
 import styles from './page.module.scss'
 
 const page = () => {
 	return (
 		<section className={styles.groupAdd}>
-			<GroupAddForm />
+			<AddGroupForm />
 		</section>
 	)
 }

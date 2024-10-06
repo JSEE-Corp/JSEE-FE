@@ -10,9 +10,9 @@ import TitleText from '@/component/TitleText'
 
 import { GroupAddSchema, groupAddSchema } from './groupAddZod'
 
-import styles from './groupAddForm.module.scss'
+import styles from './AddGroupForm.module.scss'
 
-const GroupAddForm = () => {
+const AddGroupForm = () => {
 	const {
 		control,
 		handleSubmit,
@@ -31,7 +31,7 @@ const GroupAddForm = () => {
 	}
 
 	return (
-		<form className={styles.groupAddForm} onSubmit={handleSubmit(onSubmit)}>
+		<form className={styles.addGroupForm} onSubmit={handleSubmit(onSubmit)}>
 			<TitleText title='그룹 만들기' />
 
 			<FormInputGroup label='그룹명'>
@@ -85,4 +85,4 @@ const GroupAddForm = () => {
 	)
 }
 
-export default GroupAddForm
+export default AddGroupForm
