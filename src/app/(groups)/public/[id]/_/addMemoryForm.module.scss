@@ -1,0 +1,144 @@
+$maxWidth: 70%;
+
+.addMemoryForm {
+	@include flex(y, xCenter, yCenter);
+
+	min-width: 100vw;
+
+	min-height: 100vh;
+
+	gap: 24px;
+
+	margin-top: 32px;
+
+	color: $black;
+}
+
+.header {
+	position: relative;
+
+	width: $maxWidth;
+	min-width: 400px;
+
+	@include flex(x, xCenter, yCenter);
+
+	gap: 16px;
+}
+
+.closeButton {
+	position: absolute;
+	right: 0;
+
+	@include flex(x, xCenter, yCenter);
+
+	cursor: pointer;
+}
+
+.memoryForm {
+	@include flex(x, xCenter, yCenter);
+
+	gap: 80px;
+
+	color: $black;
+
+	width: $maxWidth;
+	height: fit-content;
+
+	min-width: 500px;
+
+	padding: 20px;
+}
+
+.leftWrapper {
+	width: 50%;
+
+	@include flex(y, left, top);
+
+	gap: 16px;
+}
+
+.vericalLine {
+	width: 1px;
+	min-height: 500px;
+
+	background-color: $black-02;
+}
+
+.rightWrapper {
+	width: 50%;
+
+	@include flex(y, left, top);
+
+	gap: 16px;
+}
+
+.inputField,
+.selectField,
+.textareaField {
+	width: 100%;
+
+	padding: 10px;
+
+	border: 1px solid $black-02;
+	border-radius: 6px;
+
+	font-size: 14px;
+
+	color: $black;
+	background-color: $white;
+
+	transition: border-color 0.3s;
+
+	&:hover {
+		border-color: $black;
+	}
+
+	&:focus {
+		border-color: $black-06;
+	}
+
+	&:disabled {
+		background-color: $black-02;
+		border-color: $black-04;
+		color: $black-06;
+	}
+
+	outline: none;
+}
+
+.inputField,
+.selectField {
+	max-height: 46px;
+}
+
+.textareaField {
+	min-height: 100px;
+}
+
+.submitButton {
+	width: $maxWidth;
+	max-width: 500px;
+
+	padding: 12px;
+
+	font-size: 16px;
+	font-weight: bold;
+
+	border: none;
+	border-radius: 6px;
+
+	cursor: pointer;
+	transition:
+		background-color 0.3s ease,
+		box-shadow 0.3s ease;
+
+	&:disabled {
+		// background-color: $purple-disable;
+		cursor: not-allowed;
+	}
+}
+
+.icon24 {
+	width: 24px;
+	height: 24px;
+}

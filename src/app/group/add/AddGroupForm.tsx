@@ -22,7 +22,6 @@ const AddGroupForm = () => {
 		reset,
 	} = useForm<AddGroupSchema>({
 		resolver: zodResolver(addGroupSchema),
-		shouldUnregister: true,
 		mode: 'onChange',
 	})
 

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 
+import Icon from '@/component/base/Icon'
 import Card from '@/component/Card'
 import CreateButton from '@/component/CreateButton'
 import FilterBar from '@/component/FilterBar'
@@ -9,6 +10,8 @@ import Modal from '@/component/modal/Modal'
 import { ModalWrapper } from '@/component/modal/ModalWrapper'
 import More from '@/component/More'
 import TitleText from '@/component/TitleText'
+
+import AddMemoryForm from './AddMemoryForm'
 
 import styles from './MemoryList.module.scss'
 
@@ -57,8 +60,7 @@ const MemoryList = () => {
 			{modalState.uploadMemory && (
 				<Modal modalId='uploadMemory' onClose={() => toggleModal('uploadMemory', false)} fullPage>
 					<ModalWrapper>
-						<h2>uploadMemoryOpen</h2>
-						<button onClick={() => toggleModal('uploadMemory', false)}>닫기</button>
+						<AddMemoryForm onClose={() => toggleModal('uploadMemory', false)} />
 					</ModalWrapper>
 				</Modal>
 			)}
