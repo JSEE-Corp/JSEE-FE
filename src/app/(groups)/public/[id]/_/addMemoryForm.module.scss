@@ -1,15 +1,14 @@
-$maxWidth: 70%;
+$maxWidth: 90%;
 
 .addMemoryForm {
 	@include flex(y, xCenter, yCenter);
 
-	min-width: 100vw;
-
-	min-height: 100vh;
+	min-width: 84vw;
+	min-height: 84vh;
 
 	gap: 24px;
 
-	margin-top: 32px;
+	margin-block: 32px;
 
 	color: $black;
 }
@@ -37,7 +36,7 @@ $maxWidth: 70%;
 .memoryForm {
 	@include flex(x, xCenter, yCenter);
 
-	gap: 80px;
+	gap: 40px;
 
 	color: $black;
 

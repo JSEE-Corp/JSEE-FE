@@ -1,10 +1,14 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
 
 import { clc } from '@/utils/classComposer'
 
 import Button from './base/Button'
 import FillImg from './base/FillImg'
 import Icon from './base/Icon'
+import Modal from './modal/Modal'
+import { ModalWrapper } from './modal/ModalWrapper'
 import Badge from './Badge'
 
 import styles from './infoCard.module.scss'
@@ -37,6 +41,24 @@ type InfoCardProps = GroupInfoCardProps | MemoryInfoCardProps
 const InfoCard: React.FC<InfoCardProps> = (props) => {
 	const { isGroup, isPublic, dday, title } = props
 
+	const [groupModalState, setGroupModalState] = useState({
+		editGroup: false,
+		deleteGroup: false,
+	})
+
+	const [memoryModalState, setMemoryModalState] = useState({
+		editMemory: false,
+		deleteMemory: false,
+	})
+
+	const toggleGroupModal = (modalName: keyof typeof groupModalState, isOpen: boolean) => {
+		setGroupModalState((prevState) => ({ ...prevState, [modalName]: isOpen }))
+	}
+
+	const toggleMemoryModal = (modalName: keyof typeof memoryModalState, isOpen: boolean) => {
+		setMemoryModalState((prevState) => ({ ...prevState, [modalName]: isOpen }))
+	}
+
 	return (
 		<div className={styles.infoCard}>
 			{isGroup && (
@@ -51,8 +73,18 @@ const InfoCard: React.FC<InfoCardProps> = (props) => {
 						<div className={styles.isPublic}>{isPublic ? '공개' : '비공개'}</div>
 					</div>
 					<div className={styles.rightWrapper}>
-						<div className={styles.edit}>{isGroup ? '그룹 정보 수정하기' : '추억 수정하기'}</div>
-						<div className={styles.delete}>{isGroup ? '그룹 삭제하기' : '추억 삭제하기'}</div>
+						<button
+							className={styles.edit}
+							onClick={() => (isGroup ? toggleGroupModal('editGroup', true) : toggleMemoryModal('editMemory', true))}>
+							{isGroup ? '그룹 정보 수정하기' : '추억 수정하기'}
+						</button>
+						<button
+							className={styles.delete}
+							onClick={() =>
+								isGroup ? toggleGroupModal('deleteGroup', true) : toggleMemoryModal('deleteMemory', true)
+							}>
+							{isGroup ? '그룹 삭제하기' : '추억 삭제하기'}
+						</button>
 					</div>
 				</div>
 				<div className={styles.middleInfo}>
@@ -116,6 +148,53 @@ const InfoCard: React.FC<InfoCardProps> = (props) => {
 					)}
 				</div>
 			</div>
+			{groupModalState.editGroup && (
+				<Modal modalId='editGroup' onClose={() => toggleGroupModal('editGroup', false)}>
+					<ModalWrapper>
+						<div className={styles.editGroupForm}>
+							<h2>그룹 정보 수정</h2>
+							<Button onClick={() => toggleGroupModal('editGroup', false)}>닫기</Button>
+						</div>
+					</ModalWrapper>
+				</Modal>
+			)}
+
+			{groupModalState.deleteGroup && (
+				<Modal modalId='deleteGroup' onClose={() => toggleGroupModal('deleteGroup', false)}>
+					<ModalWrapper>
+						<div className={styles.deleteGroup}>
+							<h2>그룹 삭제</h2>
+							<p>정말로 그룹을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.</p>
+							<Button onClick={() => {}}>삭제</Button>
+							<Button onClick={() => toggleGroupModal('deleteGroup', false)}>취소</Button>
+						</div>
+					</ModalWrapper>
+				</Modal>
+			)}
+
+			{memoryModalState.editMemory && (
+				<Modal modalId='editMemory' onClose={() => toggleMemoryModal('editMemory', false)}>
+					<ModalWrapper>
+						<div className={styles.editMemoryForm}>
+							<h2>추억 수정</h2>
+							<Button onClick={() => toggleMemoryModal('editMemory', false)}>닫기</Button>
+						</div>
+					</ModalWrapper>
+				</Modal>
+			)}
+
+			{memoryModalState.deleteMemory && (
+				<Modal modalId='deleteMemory' onClose={() => toggleMemoryModal('deleteMemory', false)}>
+					<ModalWrapper>
+						<div className={styles.deleteMemory}>
+							<h2>추억 삭제</h2>
+							<p>정말로 이 추억을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.</p>
+							<Button onClick={() => {}}>삭제</Button>
+							<Button onClick={() => toggleMemoryModal('deleteMemory', false)}>취소</Button>
+						</div>
+					</ModalWrapper>
+				</Modal>
+			)}
 		</div>
 	)
 }

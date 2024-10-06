@@ -58,7 +58,7 @@ const MemoryList = () => {
 			</article>
 
 			{modalState.uploadMemory && (
-				<Modal modalId='uploadMemory' onClose={() => toggleModal('uploadMemory', false)} fullPage>
+				<Modal modalId='uploadMemory' onClose={() => toggleModal('uploadMemory', false)}>
 					<ModalWrapper>
 						<AddMemoryForm onClose={() => toggleModal('uploadMemory', false)} />
 					</ModalWrapper>

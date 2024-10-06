@@ -256,3 +256,15 @@
 	width: 24px;
 	height: 24px;
 }
+
+.editGroupForm,
+.editMemoryForm,
+.deleteGroup,
+.deleteMemory {
+	@include flex(y, xCenter, yCenter);
+
+	min-width: 84vw;
+	min-height: 84vh;
+
+	color: $black;
+}
