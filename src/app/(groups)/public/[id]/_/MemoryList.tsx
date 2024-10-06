@@ -13,9 +13,9 @@ import TitleText from '@/component/TitleText'
 import styles from './MemoryList.module.scss'
 
 const MemoryList = () => {
-	const [modalState, setModalState] = useState({ uploadMemoryOpen: false })
+	const [modalState, setModalState] = useState({ uploadMemory: false })
 
-	const toggleModal = (modalName: 'uploadMemoryOpen', isOpen: boolean) => {
+	const toggleModal = (modalName: 'uploadMemory', isOpen: boolean) => {
 		setModalState((prevState) => ({ ...prevState, [modalName]: isOpen }))
 	}
 
@@ -27,7 +27,7 @@ const MemoryList = () => {
 						<TitleText title='추억 목록' />
 					</div>
 
-					<CreateButton text='추억 올리기' onClick={() => toggleModal('uploadMemoryOpen', true)} />
+					<CreateButton text='추억 올리기' onClick={() => toggleModal('uploadMemory', true)} />
 
 					<FilterBar initialSelected='public' forContents />
 				</div>
@@ -54,11 +54,11 @@ const MemoryList = () => {
 				</div>
 			</article>
 
-			{modalState.uploadMemoryOpen && (
-				<Modal modalId='uploadMemoryOpen' onClose={() => toggleModal('uploadMemoryOpen', false)}>
+			{modalState.uploadMemory && (
+				<Modal modalId='uploadMemory' onClose={() => toggleModal('uploadMemory', false)} fullPage>
 					<ModalWrapper>
 						<h2>uploadMemoryOpen</h2>
-						<button onClick={() => toggleModal('uploadMemoryOpen', false)}>닫기</button>
+						<button onClick={() => toggleModal('uploadMemory', false)}>닫기</button>
 					</ModalWrapper>
 				</Modal>
 			)}

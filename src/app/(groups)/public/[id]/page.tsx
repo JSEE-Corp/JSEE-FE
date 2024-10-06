@@ -1,7 +1,7 @@
 import React from 'react'
 
-import GroupInfo from './GroupInfo'
-import MemoryList from './MemoryList'
+import GroupInfo from './_/GroupInfo'
+import MemoryList from './_/MemoryList'
 
 import styles from './page.module.scss'
 
